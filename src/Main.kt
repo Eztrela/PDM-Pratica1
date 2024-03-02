@@ -47,7 +47,6 @@ fun main() {
             }
             5 -> {
                 repositorioAnimal.animais.forEach(Animal::emitirSom)
-                repositorioAnimal.animais.forEach { it.emitirSom()}
             }
             6 -> {
                 print("Digite o animal que deseja remover: ")
@@ -148,9 +147,10 @@ class RepositorioAnimal {
         animais.forEach { println(it.nome + " Cor: " + it.cor + " Idade em anos humanos: " + it.idadeEmAnosHumanos()) }
     }
     fun remover(nome: String){
-        var animalARemover: List<Animal> = animais.filter {it.nome == nome}
-        if (animalARemover.size > 0){
-            animais.remove(animalARemover[0])
+        val animalARemover: Animal? = animais.find {it.nome == "Animal: "+nome}
+        if (animalARemover != null){
+            animais.remove(animalARemover)
+            println("Animal com Nome: ${nome} foi removido com sucesso")
         }
         else{
             println("Animal não encontrado")
